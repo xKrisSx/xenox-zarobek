@@ -7,6 +7,7 @@ public class Main {
         final String ANSI_YELLOW = "\u001B[33m";
         final String ANSI_RED = "\u001B[31m";
         final String ANSI_GREEN = "\u001B[32m";
+        final String ANSI_GRAY = "\u001B[38m";
 
         float koszt = 0;
         float zarobek;
@@ -90,17 +91,11 @@ public class Main {
                 System.out.println(ANSI_YELLOW + "Koszt zakupu jednej broni 190lvl?");
                 cenaBroni190 = scanner.nextInt();
 
-                if (iloscBroni190 % 2 == 1) {
-                    cenaMagii = (int) Math.ceil(iloscBroni190 / 2) * cenaBroni190;
+                if (ilosc == 1) {
+                    cenaMagii = (2 * cenaBroni190) - (iloscBroni190 * cenaBroni190);
                 } else {
-                    if (iloscBroni190 == 0) {
-                        cenaMagii = ((int) Math.ceil(ilosc / 2) * cenaBroni190) * 2;
-                    } else {
-                        cenaMagii = ilosc * cenaBroni190;
-                    }
+                    cenaMagii = (((int) Math.ceil(ilosc / 2.0) * 2) * cenaBroni190) - (iloscBroni190 * cenaBroni190);
                 }
-
-                System.out.println(cenaMagii);
 
                 //
 
@@ -112,7 +107,13 @@ public class Main {
                     iloscBroni200 = scanner.nextInt();
 
                     System.out.println(ANSI_YELLOW + "Koszt zakupu jednej broni 200lvl?");
-                    cenaZakletejMagii = scanner.nextInt();
+                    cenaBroni200 = scanner.nextInt();
+
+                    if (ilosc == 1) {
+                        cenaZakletejMagii = (2 * cenaBroni200) - (iloscBroni200 * cenaBroni200);
+                    } else {
+                        cenaZakletejMagii = (((int) Math.ceil(ilosc / 2.0) * 2) * cenaBroni200) - (iloscBroni200 * cenaBroni200);
+                    }
 
                     //
 
@@ -124,7 +125,13 @@ public class Main {
                         iloscBroni210 = scanner.nextInt();
 
                         System.out.println(ANSI_YELLOW + "Koszt zakupu jednej broni 210lvl?");
-                        cenaPrzeblysku = scanner.nextInt();
+                        cenaBroni210 = scanner.nextInt();
+
+                        if (ilosc == 1) {
+                            cenaPrzeblysku = (2 * cenaBroni210) - (iloscBroni210 * cenaBroni210);
+                        } else {
+                            cenaPrzeblysku = (((int) Math.ceil(ilosc / 2.0) * 2) * cenaBroni210) - (iloscBroni210 * cenaBroni210);
+                        }
 
                         //
 
@@ -136,7 +143,14 @@ public class Main {
                             iloscBroni220 = scanner.nextInt();
 
                             System.out.println(ANSI_YELLOW + "Koszt zakupu jednej broni 220lvl?");
-                            cenaMagicznychSidel = scanner.nextInt();
+                            System.out.println(ANSI_GRAY + "~ broń 210 + 130SM (" + (cenaBroni210 + 130) + "SM/szt)");
+                            cenaBroni220 = scanner.nextInt();
+
+                            if (ilosc == 1) {
+                                cenaMagicznychSidel = (2 * cenaBroni220) - (iloscBroni220 * cenaBroni220);
+                            } else {
+                                cenaMagicznychSidel = (((int) Math.ceil(ilosc / 2.0) * 2) * cenaBroni220) - (iloscBroni220 * cenaBroni220);
+                            }
                         }
                     }
                 }
@@ -153,19 +167,19 @@ public class Main {
 
             if (plus > 1) {
 
-                System.out.println(ANSI_RED + "[+2] Zwój Magii: " + ANSI_GREEN + cenaMagii / ilosc + "SM [na 1 szt] (" + cenaMagii+ "SM)");
+                System.out.println(ANSI_RED + "[+2] Zwój Magii: " + ANSI_GREEN + cenaMagii / ilosc + "SM [na 1 kamień] (" + cenaMagii+ "SM)");
 
                 if (plus > 2) {
 
-                    System.out.println(ANSI_RED + "[+3] Zwój Zaklętej Magii: " + ANSI_GREEN + cenaZakletejMagii / ilosc + "SM [na 1 szt] (" + cenaZakletejMagii + "SM)");
+                    System.out.println(ANSI_RED + "[+3] Zwój Zaklętej Magii: " + ANSI_GREEN + cenaZakletejMagii / ilosc + "SM [na 1 kamień] (" + cenaZakletejMagii + "SM)");
 
                     if (plus > 3) {
 
-                        System.out.println(ANSI_RED + "[+4] Zwój Magii: " + ANSI_GREEN + cenaPrzeblysku / ilosc + "SM [na 1 szt] (" + cenaPrzeblysku + "SM)");
+                        System.out.println(ANSI_RED + "[+4] Zwój Przebłysku: " + ANSI_GREEN + cenaPrzeblysku / ilosc + "SM [na 1 kamień] (" + cenaPrzeblysku + "SM)");
 
                         if (plus > 4) {
 
-                            System.out.println(ANSI_RED + "[+5] Zwój Magii: " + ANSI_GREEN + cenaMagicznychSidel / ilosc + "SM [na 1 szt] (" + cenaMagicznychSidel + "SM)");
+                            System.out.println(ANSI_RED + "[+5] Zwój Magicznych Sideł: " + ANSI_GREEN + cenaMagicznychSidel / ilosc + "SM [na 1 kamień] (" + cenaMagicznychSidel + "SM)");
 
                         }
                     }
@@ -175,55 +189,6 @@ public class Main {
 
         System.out.print("\n\n");
 
-        int iloscZwojowMagii = 0;
-        int iloscZwojowZakletejMagii = 0;
-        int iloscZwojowPrzeblysku = 0;
-        int iloscZwojowMagicznychSidel = 0;
-
-        if (plus > 1) {
-            if (iloscBroni190 > 0) {
-                if (iloscBroni190 % 2 == 1) {
-                    iloscZwojowMagii = (int) Math.floor(iloscBroni190 / 2);
-                    koszt += cenaMagii;
-                } else {
-                    iloscZwojowMagii = iloscBroni190;
-                }
-            }
-        }
-
-        if (plus > 2) {
-            if (iloscBroni200 > 0) {
-                if (iloscBroni200 % 2 == 1) {
-                    iloscZwojowZakletejMagii = (int) Math.floor(iloscBroni200 / 2);
-                    koszt += cenaZakletejMagii;
-                } else {
-                    iloscZwojowZakletejMagii = iloscBroni200;
-                }
-            }
-        }
-
-        if (plus > 3) {
-            if (iloscBroni210 > 0) {
-                if (iloscBroni210 % 2 == 1) {
-                    iloscZwojowPrzeblysku = (int) Math.floor(iloscBroni210 / 2);
-                    koszt += cenaPrzeblysku;
-                } else {
-                    iloscZwojowPrzeblysku = iloscBroni210;
-                }
-            }
-        }
-
-        if (plus > 4) {
-            if (iloscBroni220 > 0) {
-                if (iloscBroni220 % 2 == 1) {
-                    iloscZwojowMagicznychSidel = (int) Math.floor(iloscBroni220 / 2);
-                    koszt += cenaMagicznychSidel;
-                } else {
-                    iloscZwojowMagicznychSidel = iloscBroni220;
-                }
-            }
-        }
-
         //koszt += (ilosc * cenaMeteor - (iloscMeteor * cenaMeteor)) + (ilosc * cenaUmZero - (iloscUmZero * cenaUmZero)) + (ilosc * (cenaMagii / 2) - (iloscZwojowMagii * cenaMagii)) + (ilosc * cenaUp);
         koszt += (ilosc * cenaUmZero) - (iloscUmZero * cenaUmZero);
 
@@ -232,19 +197,19 @@ public class Main {
         }
 
         if (plus > 1) {
-            koszt += (ilosc * cenaMagii) - (iloscZwojowMagii * cenaMagii);
+            koszt += cenaMagii - (iloscBroni190 * cenaBroni190);
         }
 
         if (plus > 2) {
-            koszt += (ilosc * cenaZakletejMagii) - (iloscZwojowZakletejMagii * cenaZakletejMagii);
+            koszt += cenaZakletejMagii - (iloscBroni200 * cenaBroni200);
         }
 
         if (plus > 3) {
-            koszt += (ilosc * cenaPrzeblysku) - (iloscZwojowPrzeblysku * cenaPrzeblysku);
+            koszt += cenaPrzeblysku - (iloscBroni210 * cenaBroni210);
         }
 
         if (plus > 4) {
-            koszt += (ilosc * cenaMagicznychSidel) - (iloscZwojowMagicznychSidel * cenaMagicznychSidel);
+            koszt += cenaMagicznychSidel - (iloscBroni220 * cenaBroni220);
         }
 
         koszt += cenaUp * ilosc;
