@@ -1,5 +1,5 @@
 # xenox-zarobek
-Prosty program w Javie służący do liczenia zarobku z kamieni duszy umiejętności.
+Prosty program w Javie służący do liczenia zarobku z kamieni duszy.
 
 Strona serwera: https://xenoxmt2.com.pl/
 
